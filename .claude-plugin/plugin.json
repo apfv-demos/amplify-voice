@@ -1,0 +1,11 @@
+{
+  "name": "amplify-voice",
+  "description": "Voice AI tools for the community. Deploy webhook forwarders, create demo agents, and manage Retell AI integrations.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Flow Dynamics AI",
+    "url": "https://github.com/apfv-demos"
+  },
+  "repository": "https://github.com/apfv-demos/amplify-voice",
+  "license": "MIT"
+}
