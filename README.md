@@ -16,14 +16,10 @@ A Claude Code plugin with Voice AI tools for the community. Deploy webhook infra
 
 Best for a fully hands-on experience. Claude runs commands directly on your machine.
 
-```bash
-git clone https://github.com/apfv-demos/amplify-voice.git
-```
-
-Then in the Claude Desktop Code tab:
-```
-/plugin install --plugin-dir ./amplify-voice
-```
+1. **[Download amplify-voice.zip](https://github.com/apfv-demos/amplify-voice/raw/main/amplify-voice.zip)**
+2. Open Claude Desktop > **Settings** > **Plugins**
+3. Click **+** > **Upload plugin**
+4. Select the downloaded ZIP
 
 Use `/amplify-voice:deploy` to start deploying the webhook forwarder.
 
