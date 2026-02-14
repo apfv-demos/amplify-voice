@@ -4,8 +4,8 @@ A Claude Code plugin with Voice AI tools for the community. Deploy webhook infra
 
 ## Available Skills
 
-| Skill | Command | Description |
-|---|---|---|
+| Skill                        | Command                 | Description                                                                                                           |
+| ---------------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | **Retell Webhook Forwarder** | `/amplify-voice:deploy` | Deploy a Cloudflare Worker that filters Retell AI webhooks before forwarding to n8n. Saves 50-80% on execution costs. |
 
 *More skills coming soon.*
