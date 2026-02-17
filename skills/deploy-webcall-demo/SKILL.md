@@ -163,7 +163,7 @@ reCAPTCHA v3 works silently in the background — users never see a puzzle. It a
 3. Fill in:
    - **Label**: a name for this site (e.g., "Voice Demo")
    - **reCAPTCHA type**: choose **Score based (v3)**
-   - **Domains**: add `localhost` and the domain they will deploy to (e.g., `your-app.vercel.app` — they can add this later if they do not know yet)
+   - **Domains**: add the domain they will deploy to (e.g., `your-app.vercel.app` — they can add this after deployment if they do not know yet)
 4. Accept the terms and click **Submit**
 
 > **Note**: If the "Submit" button appears grayed out, make sure the terms of service checkbox is checked. This is a common gotcha.
@@ -255,46 +255,9 @@ Help the user paste in their values. Remind them:
 - The server enforces the actual limits regardless of what the client displays
 - `SUPABASE_SERVICE_ROLE_KEY` and `RECAPTCHA_SECRET_KEY` are secret and should never be committed to git
 
-## Phase 7: Local Testing
+## Phase 7: Deploy to Vercel
 
-### 7a. Configure Supabase for local development
-
-1. Go to Supabase **Authentication > URL Configuration**
-2. Set **Site URL** to `http://localhost:3000` (this controls where OAuth redirects after sign-in — will update to the production URL after deployment)
-3. Under **Redirect URLs**, click **Add URL** and enter: `http://localhost:3000/auth/callback`
-4. Click **Save**
-
-### 7b. Start the development server
-
-```bash
-npm run dev
-```
-
-The app should start on http://localhost:3000.
-
-### 7c. Test the full flow
-
-Walk the user through testing:
-1. Open http://localhost:3000 in their browser
-2. They should see the landing page with the app name and "Sign in with Google" button
-3. Click **Sign in with Google** — a Google OAuth popup should appear
-4. After signing in, they should see the call interface with the blob animation
-5. Click **Start Call** — the blob should animate and they should hear their Retell agent
-6. The quota display should show "4 of 5 calls remaining" after the first call
-7. Click **End Call** to stop
-
-If sign-in fails, check:
-- The Supabase redirect URL includes `http://localhost:3000/auth/callback`
-- The Google OAuth Client has the Supabase callback URL in its redirect URIs
-- See [troubleshooting.md](references/troubleshooting.md)
-
-If the call fails, check:
-- `RETELL_API_KEY` and `RETELL_AGENT_ID` are correct
-- The browser allows microphone access (HTTPS required in production; localhost works without it)
-
-## Phase 8: Deploy to Vercel
-
-### 8a. Push to GitHub
+### 7a. Push to GitHub
 
 If the user cloned the repo (not forked), they need to create their own repository:
 
@@ -321,7 +284,7 @@ git branch -M main
 git push -u origin main
 ```
 
-### 8b. Import to Vercel and add environment variables
+### 7b. Import to Vercel and add environment variables
 
 1. Go to https://vercel.com/new
 2. Click **Import** next to their GitHub repository
@@ -347,9 +310,9 @@ If the build fails, check that all environment variables are set correctly. Go t
 
 Copy the production URL (e.g., `https://your-app.vercel.app`).
 
-## Phase 9: Post-Deployment Configuration
+## Phase 8: Configure Supabase for Production
 
-### 9a. Update Supabase Site URL
+### 8a. Set the Site URL and redirect URL
 
 1. Go to Supabase **Authentication > URL Configuration**
 2. Set **Site URL** to the Vercel production URL: `https://your-app.vercel.app`
@@ -358,7 +321,7 @@ Copy the production URL (e.g., `https://your-app.vercel.app`).
 
 > **Important**: If the Site URL is still `http://localhost:3000`, Google sign-in on the production site will redirect back to localhost instead of the live site.
 
-### 9b. Add the production domain to reCAPTCHA
+### 8b. Add the production domain to reCAPTCHA
 
 1. Go to https://www.google.com/recaptcha/admin
 2. Click on their reCAPTCHA site
@@ -366,11 +329,7 @@ Copy the production URL (e.g., `https://your-app.vercel.app`).
 4. Under **Domains**, add the Vercel domain (e.g., `your-app.vercel.app`)
 5. Click **Save**
 
-### 9c. Add production redirect URI to Google Cloud (if needed)
-
-If using a custom domain (not the default Supabase callback), ensure it is listed in the Google Cloud OAuth credentials. The Supabase callback URL does not change between environments, so this step is usually not needed.
-
-## Phase 10: Verify Production
+## Phase 9: Verify Production
 
 Tell the user:
 > Let's verify everything works on the live site.
@@ -405,6 +364,17 @@ When everything works, summarize for the user:
 - Change quotas: update `NEXT_PUBLIC_MAX_CALLS_PER_DAY` and `NEXT_PUBLIC_MAX_CALL_DURATION_SECONDS`
 - Change branding: update `NEXT_PUBLIC_APP_NAME` and `NEXT_PUBLIC_APP_DESCRIPTION`
 - Replace the logo: swap `/public/logo.png` with their own image
+
+## Optional: Local Development
+
+If the user wants to run the app locally for development or customization later, they need to add localhost to Supabase:
+
+1. Go to Supabase **Authentication > URL Configuration**
+2. Under **Redirect URLs**, add: `http://localhost:3000/auth/callback`
+3. Click **Save**
+4. Run `npm run dev` and open http://localhost:3000
+
+> **Note**: Do NOT change the Site URL to localhost — leave it pointing to the production URL. The redirect URLs list can contain multiple entries, so both production and localhost will work simultaneously.
 
 ## Error Handling
 
