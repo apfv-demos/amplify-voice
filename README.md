@@ -4,10 +4,10 @@ A Claude Code plugin with Voice AI tools for the community. Deploy webhook infra
 
 ## Available Skills
 
-| Skill                        | Command                       | Description                                                                                                           |
-| ---------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **Retell Webhook Forwarder** | `/amplify-voice:deploy`       | Deploy a Cloudflare Worker that filters Retell AI webhooks before forwarding to n8n. Saves 50-80% on execution costs. |
-| **Retell Web Call Demo**     | `/amplify-voice:webcall-demo` | Deploy a secure voice agent demo website with Google auth, reCAPTCHA, daily quotas, and a polished UI.                |
+| Skill                        | Command                                    | Description                                                                                                           |
+| ---------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| **Retell Webhook Forwarder** | `/amplify-voice:deploy-webhook-forwarder`  | Deploy a Cloudflare Worker that filters Retell AI webhooks before forwarding to n8n. Saves 50-80% on execution costs. |
+| **Retell Web Call Demo**     | `/amplify-voice:deploy-webcall-demo`       | Deploy a secure voice agent demo website with Google auth, reCAPTCHA, daily quotas, and a polished UI.                |
 
 ## Install
 
@@ -20,7 +20,7 @@ Best for a fully hands-on experience. Claude runs commands directly on your mach
 3. Click **+** > **Upload plugin**
 4. Select the downloaded ZIP
 
-Use `/amplify-voice:deploy` or `/amplify-voice:webcall-demo` to get started.
+Use `/amplify-voice:deploy-webhook-forwarder` or `/amplify-voice:deploy-webcall-demo` to get started.
 
 ### Option B: Claude Code CLI / VS Code
 
@@ -33,10 +33,10 @@ cp -r retell-webhook-forwarder/skill ~/.claude/skills/retell-webhook-forwarder
 
 # Web Call Demo skill
 git clone https://github.com/apfv-demos/amplify-voice.git
-cp -r amplify-voice/skills/webcall-demo ~/.claude/skills/retell-webcall-demo
+cp -r amplify-voice/skills/deploy-webcall-demo ~/.claude/skills/deploy-webcall-demo
 ```
 
-Then type `/retell-webhook-forwarder` or `/retell-webcall-demo` to start the guided setup.
+Then type `/retell-webhook-forwarder` or `/deploy-webcall-demo` to start the guided setup.
 
 ### Option C: Claude Desktop — Chat Tab (Skill Upload)
 
