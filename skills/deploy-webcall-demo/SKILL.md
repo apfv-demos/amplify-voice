@@ -28,23 +28,27 @@ Then check prerequisites one at a time. Ask the user to confirm each before cont
 - They need an existing agent — the template connects to it, it does not create one
 - If they do not have an agent yet, tell them to create one first and come back
 
-**2. Node.js v20 or later**
+**2. Supabase account (free)**
+- Sign up at https://supabase.com if needed
+- Used for Google authentication and call logging/quotas
+
+**3. Node.js v20 or later**
 Check by running:
 ```bash
 node -v
 ```
 - If not installed or below v20: direct them to https://nodejs.org/ and have them download the LTS version
 
-**3. A GitHub account**
+**4. A GitHub account**
 - Needed to fork the template and deploy to Vercel
 
-**4. A Vercel account**
+**5. A Vercel account**
 - Sign up at https://vercel.com (free tier works fine)
 - Best to sign up with GitHub for seamless integration
 
-Tell the user they will also set up Supabase, Google Cloud OAuth, and reCAPTCHA during the process — no need to do those in advance.
+Tell the user they will also set up Google Cloud OAuth and reCAPTCHA during the process — no need to do those in advance.
 
-Do NOT proceed until items 1–4 are confirmed.
+Do NOT proceed until items 1–5 are confirmed.
 
 ## Phase 2: Supabase Project Setup
 
