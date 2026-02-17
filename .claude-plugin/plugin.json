@@ -3,7 +3,7 @@
   "description": "Voice AI tools for the community. Deploy webhook forwarders, create demo agents, and manage Retell AI integrations.",
   "version": "1.1.0",
   "author": {
-    "name": "Flow Dynamics AI",
+    "name": "Christian Landsteiner",
     "url": "https://github.com/apfv-demos"
   },
   "repository": "https://github.com/apfv-demos/amplify-voice",
