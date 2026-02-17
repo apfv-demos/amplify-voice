@@ -1,5 +1,5 @@
 ---
-name: retell-webcall-demo
+name: deploy-webcall-demo
 description: Deploy a secure voice agent demo website using the Retell Voice Demo template. Includes Google auth, reCAPTCHA, daily quotas, and a polished UI with blob animation. Use when the user mentions deploying a Retell demo site, creating a voice agent website, setting up a web call demo, Retell web call template, voice demo with authentication, demo site for Retell agents, or building a website to demo their voice AI agent.
 ---
 

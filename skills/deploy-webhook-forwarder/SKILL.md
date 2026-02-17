@@ -1,5 +1,5 @@
 ---
-name: retell-webhook-forwarder
+name: deploy-webhook-forwarder
 description: Deploy a Cloudflare Worker that filters and secures Retell AI webhooks before forwarding to n8n or any webhook endpoint. Saves 50-80% on n8n execution costs. Use when the user mentions Retell webhooks, n8n execution costs, filtering Retell events, too many n8n executions from Retell, HMAC verification for Retell, reducing webhook costs, deploying a Cloudflare Worker for voice AI, setting up a webhook forwarder for Retell AI, or creating a Retell webhook filter.
 ---
 
