@@ -28,27 +28,31 @@ Then check prerequisites one at a time. Ask the user to confirm each before cont
 - They need an existing agent — the template connects to it, it does not create one
 - If they do not have an agent yet, tell them to create one first and come back
 
-**2. Supabase account (free)**
+**2. Google account**
+- Needed for Google Cloud Console (OAuth setup) and reCAPTCHA admin
+- Any Gmail or Google Workspace account works
+
+**3. Supabase account (free)**
 - Sign up at https://supabase.com if needed
 - Used for Google authentication and call logging/quotas
 
-**3. Node.js v20 or later**
+**4. Node.js v20 or later**
 Check by running:
 ```bash
 node -v
 ```
 - If not installed or below v20: direct them to https://nodejs.org/ and have them download the LTS version
 
-**4. A GitHub account**
-- Needed to fork the template and deploy to Vercel
+**5. A GitHub account**
+- Needed to host the code and deploy to Vercel
 
-**5. A Vercel account**
+**6. A Vercel account**
 - Sign up at https://vercel.com (free tier works fine)
 - Best to sign up with GitHub for seamless integration
 
-Tell the user they will also set up Google Cloud OAuth and reCAPTCHA during the process — no need to do those in advance.
+Tell the user that Google Cloud OAuth and reCAPTCHA will be configured during the process — they just need the Google account ready.
 
-Do NOT proceed until items 1–5 are confirmed.
+Do NOT proceed until items 1–6 are confirmed.
 
 ## Phase 2: Supabase Project Setup
 
@@ -56,8 +60,9 @@ Do NOT proceed until items 1–5 are confirmed.
 
 Walk the user through this:
 1. Go to https://supabase.com/dashboard
-2. Click **New project**
-3. Give it a name (e.g., "retell-voice-demo")
+2. If prompted to create an organization first, create one (any name works, choose the free plan)
+3. Click **New project**
+4. Give it a name (e.g., "retell-voice-demo")
 4. Choose a database password — tell them to save it somewhere (they will not need it again for this template, but it is good practice)
 5. Select the region closest to them
 6. Click **Create new project** and wait for it to finish provisioning
@@ -116,9 +121,10 @@ Walk the user through step by step:
 
 ### 3a. Create or select a Google Cloud project
 1. Go to https://console.cloud.google.com
-2. Click the project dropdown (top-left, next to "Google Cloud")
-3. Click **New Project** (or select an existing one)
-4. Give it a name and click **Create**
+2. If prompted about a free trial or billing, they can skip or dismiss it — OAuth credentials are completely free and do not require billing to be enabled
+3. Click the project dropdown (top-left, next to "Google Cloud")
+4. Click **New Project** (or select an existing one)
+5. Give it a name and click **Create**
 
 ### 3b. Configure the OAuth consent screen
 1. Go to **APIs & Services > OAuth consent screen** (sidebar)
@@ -251,10 +257,10 @@ Help the user paste in their values. Remind them:
 
 ## Phase 7: Local Testing
 
-### 7a. Add localhost to Supabase redirect URLs
+### 7a. Configure Supabase for local development
 
 1. Go to Supabase **Authentication > URL Configuration**
-2. Under **Site URL**, leave it as-is for now (will update after deployment)
+2. Set **Site URL** to `http://localhost:3000` (this controls where OAuth redirects after sign-in — will update to the production URL after deployment)
 3. Under **Redirect URLs**, click **Add URL** and enter: `http://localhost:3000/auth/callback`
 4. Click **Save**
 
@@ -292,12 +298,17 @@ If the call fails, check:
 
 If the user cloned the repo (not forked), they need to create their own repository:
 
-1. Create a new repository on GitHub (public or private, their choice)
-2. Update the remote and push:
+1. Create a new repository on GitHub (public or private, their choice — do NOT initialize it with a README)
+2. Update the remote and push. First check which branch they are on:
 
 ```bash
+git branch
+```
+
+Then push (use whichever branch name is shown — likely `master`):
+```bash
 git remote set-url origin https://github.com/THEIR-USERNAME/THEIR-REPO-NAME.git
-git push -u origin master
+git push -u origin HEAD
 ```
 
 If they downloaded the ZIP, they need to initialize git first:
@@ -310,18 +321,12 @@ git branch -M main
 git push -u origin main
 ```
 
-### 8b. Import to Vercel
+### 8b. Import to Vercel and add environment variables
 
 1. Go to https://vercel.com/new
 2. Click **Import** next to their GitHub repository
-3. Click **Deploy** (no framework preset changes needed — Vercel auto-detects Next.js)
-
-Vercel will fail the first build because there are no environment variables yet. That is expected.
-
-### 8c. Add environment variables in Vercel
-
-1. In the Vercel project dashboard, go to **Settings > Environment Variables**
-2. Add all 11 environment variables from `.env.local`:
+3. **Before clicking Deploy**, expand the **Environment Variables** section
+4. Add all 11 environment variables from `.env.local`:
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY`
@@ -336,11 +341,9 @@ Vercel will fail the first build because there are no environment variables yet.
 
 > **Common mistake**: Watch for typos like `EXT_PUBLIC_` instead of `NEXT_PUBLIC_`. This will cause a `MIDDLEWARE_INVOCATION_FAILED` error.
 
-3. Click **Save**
+5. Click **Deploy**
 
-### 8d. Redeploy
-
-Go to the **Deployments** tab and click the **...** menu on the latest deployment → **Redeploy**. This time it should succeed.
+If the build fails, check that all environment variables are set correctly. Go to **Settings > Environment Variables** to verify, fix any issues, then go to **Deployments** > click **...** on the latest deployment > **Redeploy**.
 
 Copy the production URL (e.g., `https://your-app.vercel.app`).
 
