@@ -119,14 +119,17 @@ The demo uses Google sign-in via Supabase. This requires setting up OAuth creden
 
 Walk the user through step by step:
 
-### 3a. Create or select a Google Cloud project
+### 3a. Select or create a Google Cloud project
 1. Go to https://console.cloud.google.com
 2. If prompted about a free trial or billing, they can skip or dismiss it — OAuth credentials are completely free and do not require billing to be enabled
 3. Click the project dropdown (top-left, next to "Google Cloud")
-4. Click **New Project** (or select an existing one)
-5. Give it a name and click **Create**
+4. If they already have a project, **select it** — no need to create a new one. They can add OAuth credentials to any existing project.
+5. If they do not have any project, click **New Project**, give it a name, and click **Create**
 
-### 3b. Configure the OAuth consent screen
+### 3b. Configure the OAuth consent screen (if not already configured)
+If the project already has an OAuth consent screen configured (from a previous setup), skip to 3c.
+
+If not:
 1. Go to **APIs & Services > OAuth consent screen** (sidebar)
 2. Choose **External** user type → click **Create**
 3. Fill in:
