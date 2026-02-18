@@ -23,36 +23,41 @@ Start by explaining what they are building:
 
 Then check prerequisites one at a time. Ask the user to confirm each before continuing:
 
-**1. Retell AI account with at least one agent configured**
-- Sign up at https://app.retellai.com if needed
+**1. Claude Desktop**
+- Download at https://claude.com/download
+- This is the tool that runs the deployment skill — it is required
+- A Pro or Team plan is recommended for the best experience
+
+**2. Retell AI account with at least one agent configured**
+- Sign up at https://www.retellai.com if needed
 - They need an existing agent — the template connects to it, it does not create one
 - If they do not have an agent yet, tell them to create one first and come back
 
-**2. Google account**
-- Needed for Google Cloud Console (OAuth setup) and reCAPTCHA admin
+**3. Google account**
+- Needed for Google Cloud Console (https://console.cloud.google.com) and reCAPTCHA admin (https://www.google.com/recaptcha/admin)
 - Any Gmail or Google Workspace account works
 
-**3. Supabase account (free)**
+**4. Supabase account (free)**
 - Sign up at https://supabase.com if needed
 - Used for Google authentication and call logging/quotas
 
-**4. Node.js v20 or later**
+**5. Node.js v20 or later**
 Check by running:
 ```bash
 node -v
 ```
 - If not installed or below v20: direct them to https://nodejs.org/ and have them download the LTS version
 
-**5. A GitHub account**
+**6. A GitHub account**
 - Needed to host the code and deploy to Vercel
 
-**6. A Vercel account**
+**7. A Vercel account**
 - Sign up at https://vercel.com (free tier works fine)
 - Best to sign up with GitHub for seamless integration
 
 Tell the user that Google Cloud OAuth and reCAPTCHA will be configured during the process — they just need the Google account ready.
 
-Do NOT proceed until items 1–6 are confirmed.
+Do NOT proceed until items 1–7 are confirmed.
 
 ## Phase 2: Supabase Project Setup
 
@@ -182,7 +187,7 @@ Tell the user to save these with their other keys.
 
 If they have not already gathered these:
 
-1. Go to https://app.retellai.com
+1. Go to https://www.retellai.com
 2. **API Key**: Settings > API Keys → copy it (starts with `key_`)
 3. **Agent ID**: Click on the agent they want to demo → copy the Agent ID from the URL or the agent page (starts with `agent_`)
 
